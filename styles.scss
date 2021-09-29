@@ -12,9 +12,11 @@
     // font-family: "Bangers", cursive;
     font-size: 25px;
 }
-// body {
-//     width: 100%;
-// }
+body {
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+}
 button {
     width: 27%;
     height: 19%;
