@@ -6,12 +6,14 @@
     font-family: "BoldlyMissy";
     src: url("BoldlyMissy.otf") format("opentype");
 }
+
 * {
     box-sizing: border-box;
     font-family: "BoldlyMissy", cursive;
     // font-family: "Bangers", cursive;
     font-size: 25px;
 }
+
 body {
     display: flex;
     justify-content: center;
@@ -19,19 +21,21 @@ body {
 }
 button {
     width: 27%;
-    height: 19%;
+    height: 18%;
     margin: 0.5%;
     border-radius: 25%;
+    box-shadow: 2.5px 10px rgb(161, 61, 78);
+    cursor: pointer;
 }
 .button--modifier {
-    width: 39%;
-    height: 39%;
-    // border-radius: 25%;
+    // width: 40%;
+    // height: 18.2%;
+    width: 40%;
+    height: 18%;
 }
 .button--lg {
-    width: 42%;
-    height: 88%;
-    // border-radius: 25%;
+    width: 80%;
+    height: 20%;
 }
 .grid-container {
     width: 35%;
@@ -42,13 +46,14 @@ button {
     border: 3px solid black;
     border-radius: 8%;
     background-color: lightcoral;
+    justify-content: center;
+
     grid-template-areas:
         "top top top top top"
         "second second second third third"
         "second second second third third"
-        "second second second forth forth"
-        "second second second forth forth";
-    // background-color: lightgreen;
+        "second second second third third"
+        "second second second third third";
 }
 
 .top__flex {
@@ -64,22 +69,17 @@ button {
     grid-area: second;
     width: 100%;
     flex-wrap: wrap;
-    margin: 3%;
+    margin: 5% 0% 5% 3%;
 }
 .third__flex {
     @include flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     grid-area: third;
     width: 100%;
     flex-wrap: wrap;
-    margin: 5% 5% 0 0;
-}
-.fourth__flex {
-    @include flex;
-    justify-content: space-around;
-    grid-area: forth;
-    align-items: center;
-    margin: 0 4% 10% 5%;
+    margin: 5% 7% 5% 0;
+    padding-right: 8px;
+    padding-top: 6px;
 }
 
 p {
