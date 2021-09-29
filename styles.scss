@@ -18,14 +18,17 @@ body {
     display: flex;
     justify-content: center;
     margin: 5%;
+    background-image: linear-gradient(rgb(10, 59, 71), rgb(154, 206, 103));
 }
 button {
     width: 27%;
     height: 18%;
     margin: 0.5%;
     border-radius: 25%;
-    box-shadow: 2.5px 10px rgb(161, 61, 78);
+    box-shadow: 2.5px 10px rgb(109, 104, 104);
     cursor: pointer;
+    background-color: black;
+    color: white;
 }
 .button--modifier {
     // width: 40%;
@@ -33,9 +36,11 @@ button {
     width: 40%;
     height: 18%;
 }
+
 .button--lg {
     width: 80%;
     height: 20%;
+    color: orange;
 }
 .grid-container {
     width: 35%;
@@ -43,10 +48,11 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
-    border: 3px solid black;
+    border: 4px solid black;
     border-radius: 8%;
-    background-color: lightcoral;
+    background-color: rgb(185, 63, 185);
     justify-content: center;
+    box-shadow: 9.5px 15.5px rgb(78, 19, 78);
 
     grid-template-areas:
         "top top top top top"
@@ -83,19 +89,25 @@ button {
 }
 
 p {
+    min-height: 83px;
+    font-family: cursive;
     border: 2px solid black;
     width: 90%;
     border-radius: 16%;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    padding-bottom: 20px;
+    // padding-bottom: 20px;
     padding-right: 20px;
-    font-size: larger;
-    background-color: rgb(216, 239, 247);
+    // padding: 10px 20px 20px 0;
+    font-size: 50px;
+    background-color: rgb(248, 215, 248);
 }
 
 #division {
     font-family: cursive;
     font-size: larger;
+}
+.orangeBtn {
+    color: orange;
 }
