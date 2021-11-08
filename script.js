@@ -1,4 +1,5 @@
-"strict";
+"use strict";
+import { addition, subtraction, multiplication, division } from "./js/math.js";
 
 const equalbtn = document.querySelector("#equals");
 const additionBtn = document.getElementById("addition");
@@ -9,30 +10,13 @@ const resetBtn = document.querySelector(".button--lg");
 const button = document.querySelectorAll("button");
 const turnoffBtn = document.querySelector("#turnoffBtn");
 const turnonBtn = document.querySelector("#turnonBtn");
-
-let addition = (num1, num2) => {
-    const sum = Number(num1) + Number(num2);
-    return sum.toFixed(2);
-};
-
-let subtraction = (num1, num2) => {
-    const sum = Number(num1) - Number(num2);
-    return sum.toFixed(2);
-};
-
-let multiplication = (num1, num2) => {
-    const sum = Number(num1) * Number(num2);
-    return sum.toFixed(2);
-};
-
-let division = (num1, num2) => {
-    const sum = Number(num1) / Number(num2);
-    return sum.toFixed(2);
-};
-
+const calScreen = document.querySelector("p");
+const decimalBtn = document.querySelector("#decimalBtn");
 let currentOperation = "";
 let currentValue = "";
 let storedValue = 0;
+
+let clickNomoreThanOnce = 0;
 
 // 1. find a way to loop all the buttons
 // Click => display the number into screen
@@ -44,10 +28,10 @@ button.forEach((btn) => {
         btn === subtractionBtn
     ) {
         btn.addEventListener("click", (event) => {
-            document.querySelector("p").innerText = "";
+            calScreen.innerText = "";
             storedValue = currentValue;
             currentValue = "";
-
+            clickNomoreThanOnce = 0;
             if (btn === additionBtn) {
                 currentOperation = "+";
             } else if (btn === multiplicationBtn) {
@@ -62,54 +46,61 @@ button.forEach((btn) => {
         btn.addEventListener("click", (event) => {
             if (currentOperation === "+") {
                 addition(storedValue, currentValue);
-                document.querySelector("p").innerText = addition(
-                    storedValue,
-                    currentValue,
-                );
+                calScreen.innerText = addition(storedValue, currentValue);
             } else if (currentOperation === "-") {
                 subtraction(storedValue, currentValue);
-                document.querySelector("p").innerText = subtraction(
-                    storedValue,
-                    currentValue,
-                );
+                calScreen.innerText = subtraction(storedValue, currentValue);
             } else if (currentOperation === "*") {
                 multiplication(storedValue, currentValue);
-                document.querySelector("p").innerText = multiplication(
-                    storedValue,
-                    currentValue,
-                );
+                calScreen.innerText = multiplication(storedValue, currentValue);
             } else if (currentOperation === "/") {
                 division(storedValue, currentValue);
-                document.querySelector("p").innerText = division(
-                    storedValue,
-                    currentValue,
-                );
+                calScreen.innerText = division(storedValue, currentValue);
             }
             currentValue = 0;
             storedValue = 0;
         });
     } else if (btn === resetBtn) {
         btn.addEventListener("click", (event) => {
-            document.querySelector("p").innerText = "";
+            calScreen.innerText = "";
             storedValue = 0;
             currentValue = "";
+            clickNomoreThanOnce = 0;
         });
     } else if (btn === turnoffBtn) {
         btn.addEventListener("click", (event) => {
-            document.querySelector("p").style.backgroundColor = "black";
+            calScreen.style.backgroundColor = "black";
         });
     } else if (btn === turnonBtn) {
         btn.addEventListener("click", (event) => {
             currentValue = "";
             storedValue = 0;
-            document.querySelector("p").innerText = "";
-            document.querySelector("p").style.backgroundColor =
-                "rgb(248, 215, 248)";
+            clickNomoreThanOnce = 0;
+            calScreen.innerText = "";
+            calScreen.style.backgroundColor = "rgb(248, 215, 248)";
+        });
+    } else if (btn === decimalBtn) {
+        btn.addEventListener("click", (event) => {
+            console.log(clickNomoreThanOnce);
+
+            if (clickNomoreThanOnce >= 1) {
+                return;
+            } else {
+                clickNomoreThanOnce = clickNomoreThanOnce + 1;
+                // currentValue=1
+                currentValue = currentValue + btn.innerText;
+                // currentValue= 1+ .
+                calScreen.innerText = currentValue;
+                // display
+            }
+
+            // pressed once = display
+            // pressed more than once = won't desplay
         });
     } else {
         btn.addEventListener("click", (event) => {
             currentValue = currentValue + btn.innerText;
-            document.querySelector("p").innerText = currentValue;
+            calScreen.innerText = currentValue;
         });
     }
 });
