@@ -16,93 +16,87 @@ let currentOperation = "";
 let currentValue = "";
 let storedValue = 0;
 
-let clickNomoreThanOnce = 0;
+// This is for decimal number never can be more than one 
+let decimalClick = false;
 
 // 1. find a way to loop all the buttons
 // Click => display the number into screen
 button.forEach((btn) => {
-    if (
-        btn === additionBtn ||
-        btn === multiplicationBtn ||
-        btn === divisionBtn ||
-        btn === subtractionBtn
-    ) {
-        btn.addEventListener("click", (event) => {
-            calScreen.innerText = "";
-            storedValue = currentValue;
-            currentValue = "";
-            clickNomoreThanOnce = 0;
-            if (btn === additionBtn) {
-                currentOperation = "+";
-            } else if (btn === multiplicationBtn) {
-                currentOperation = "*";
-            } else if (btn === divisionBtn) {
-                currentOperation = "/";
-            } else if (btn === subtractionBtn) {
-                currentOperation = "-";
-            }
-        });
-    } else if (btn === equalbtn) {
-        btn.addEventListener("click", (event) => {
-            if (currentOperation === "+") {
-                addition(storedValue, currentValue);
-                calScreen.innerText = addition(storedValue, currentValue);
-            } else if (currentOperation === "-") {
-                subtraction(storedValue, currentValue);
-                calScreen.innerText = subtraction(storedValue, currentValue);
-            } else if (currentOperation === "*") {
-                multiplication(storedValue, currentValue);
-                calScreen.innerText = multiplication(storedValue, currentValue);
-            } else if (currentOperation === "/") {
-                division(storedValue, currentValue);
-                calScreen.innerText = division(storedValue, currentValue);
-            }
-            currentValue = 0;
-            storedValue = 0;
-        });
-    } else if (btn === resetBtn) {
-        btn.addEventListener("click", (event) => {
-            calScreen.innerText = "";
-            storedValue = 0;
-            currentValue = "";
-            clickNomoreThanOnce = 0;
-        });
-    } else if (btn === turnoffBtn) {
-        btn.addEventListener("click", (event) => {
-            calScreen.style.backgroundColor = "black";
-        });
-    } else if (btn === turnonBtn) {
-        btn.addEventListener("click", (event) => {
-            currentValue = "";
-            storedValue = 0;
-            clickNomoreThanOnce = 0;
-            calScreen.innerText = "";
-            calScreen.style.backgroundColor = "rgb(248, 215, 248)";
-        });
-    } else if (btn === decimalBtn) {
-        btn.addEventListener("click", (event) => {
-            console.log(clickNomoreThanOnce);
-
-            if (clickNomoreThanOnce >= 1) {
-                return;
-            } else {
-                clickNomoreThanOnce = clickNomoreThanOnce + 1;
-                // currentValue=1
-                currentValue = currentValue + btn.innerText;
-                // currentValue= 1+ .
-                calScreen.innerText = currentValue;
-                // display
-            }
-
-            // pressed once = display
-            // pressed more than once = won't desplay
-        });
-    } else {
-        btn.addEventListener("click", (event) => {
-            currentValue = currentValue + btn.innerText;
-            calScreen.innerText = currentValue;
-        });
-    }
+  if (
+    btn === additionBtn ||
+    btn === multiplicationBtn ||
+    btn === divisionBtn ||
+    btn === subtractionBtn
+  ) {
+    btn.addEventListener("click", (event) => {
+      calScreen.innerText = "";
+      storedValue = currentValue;
+      currentValue = "";
+      decimalClick = false;
+      if (btn === additionBtn) {
+        currentOperation = "+";
+      } else if (btn === multiplicationBtn) {
+        currentOperation = "*";
+      } else if (btn === divisionBtn) {
+        currentOperation = "/";
+      } else if (btn === subtractionBtn) {
+        currentOperation = "-";
+      }
+    });
+  } else if (btn === equalbtn) {
+    btn.addEventListener("click", (event) => {
+      if (currentOperation === "+") {
+        calScreen.innerText = addition(storedValue, currentValue);
+      } else if (currentOperation === "-") {
+        calScreen.innerText = subtraction(storedValue, currentValue);
+      } else if (currentOperation === "*") {
+        calScreen.innerText = multiplication(storedValue, currentValue);
+      } else if (currentOperation === "/") {
+        calScreen.innerText = division(storedValue, currentValue);
+      }
+      currentValue = 0;
+      storedValue = 0;
+    });
+  } else if (btn === resetBtn) {
+    btn.addEventListener("click", (event) => {
+      calScreen.innerText = "";
+      storedValue = 0;
+      currentValue = "";
+      decimalClick = false;
+    });
+  } else if (btn === turnoffBtn) {
+    btn.addEventListener("click", (event) => {
+      calScreen.style.backgroundColor = "black";
+    });
+  } else if (btn === turnonBtn) {
+    btn.addEventListener("click", (event) => {
+      currentValue = "";
+      storedValue = 0;
+      decimalClick = false;
+      calScreen.innerText = "";
+      calScreen.style.backgroundColor = "rgb(248, 215, 248)";
+    });
+  } else if (btn === decimalBtn) {
+    btn.addEventListener("click", (event) => {
+ 
+    // pressed more than once = won't display
+      if (decimalClick) {
+        return;
+      } else {
+        // pressed once = display
+        decimalClick = true;   
+        currentValue = currentValue + btn.innerText;
+        calScreen.innerText = currentValue;
+      }
+    
+    });
+  } else {
+    btn.addEventListener("click", (event) => {
+        // joining the string values (concatenation of string)
+      currentValue = currentValue + btn.innerText;
+      calScreen.innerText = currentValue;
+    });
+  }
 });
 
 // 2. Addition. Need find a way for the computer to recognise the number, and store the number clicked
