@@ -11,8 +11,15 @@
 body {
   display: flex;
   justify-content: center;
-  margin: 5%;
-  background-image: linear-gradient(#0a3b47, #9ace67);
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 5%;
+  background-color: #0d0d1a;
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(185, 63, 185, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(154, 206, 103, 0.25) 0%, transparent 55%),
+    radial-gradient(ellipse at 60% 10%, rgba(10, 59, 71, 0.6) 0%, transparent 50%);
 }
 
 button {
@@ -43,11 +50,11 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
-  border: 4px solid black;
+  border: 2px solid rgba(255, 255, 255, 0.15);
   border-radius: 8%;
-  background-color: #b93fb9;
+  background: linear-gradient(160deg, #cc4dcc 0%, #a030a0 60%, #7a1f7a 100%);
   justify-content: center;
-  box-shadow: 9.5px 15.5px #4e134e;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255,255,255,0.08) inset, 14px 20px 0px #3a0a3a;
   grid-template-areas: "top top top top top" "second second second third third" "second second second third third" "second second second third third" "second second second third third";
 }
 
