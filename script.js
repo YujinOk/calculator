@@ -16,7 +16,7 @@ let currentOperation = "";
 let currentValue = "";
 let storedValue = 0;
 
-// This is for decimal number never can be more than one 
+// This is for decimal number never can be more than one
 let decimalClick = false;
 
 // 1. find a way to loop all the buttons
@@ -29,7 +29,6 @@ button.forEach((btn) => {
     btn === subtractionBtn
   ) {
     btn.addEventListener("click", (event) => {
-      calScreen.innerText = "";
       storedValue = currentValue;
       currentValue = "";
       decimalClick = false;
@@ -42,6 +41,7 @@ button.forEach((btn) => {
       } else if (btn === subtractionBtn) {
         currentOperation = "-";
       }
+      calScreen.innerText = storedValue + " " + currentOperation;
     });
   } else if (btn === equalbtn) {
     btn.addEventListener("click", (event) => {
@@ -56,12 +56,14 @@ button.forEach((btn) => {
       }
       currentValue = 0;
       storedValue = 0;
+      currentOperation = "";
     });
   } else if (btn === resetBtn) {
     btn.addEventListener("click", (event) => {
       calScreen.innerText = "";
       storedValue = 0;
       currentValue = "";
+      currentOperation = "";
       decimalClick = false;
     });
   } else if (btn === turnoffBtn) {
@@ -78,23 +80,31 @@ button.forEach((btn) => {
     });
   } else if (btn === decimalBtn) {
     btn.addEventListener("click", (event) => {
- 
-    // pressed more than once = won't display
+      // pressed more than once = won't display
       if (decimalClick) {
         return;
       } else {
         // pressed once = display
-        decimalClick = true;   
+        decimalClick = true;
         currentValue = currentValue + btn.innerText;
-        calScreen.innerText = currentValue;
+        if (currentOperation) {
+          calScreen.innerText =
+            storedValue + " " + currentOperation + " " + currentValue;
+        } else {
+          calScreen.innerText = currentValue;
+        }
       }
-    
     });
   } else {
     btn.addEventListener("click", (event) => {
-        // joining the string values (concatenation of string)
+      // joining the string values (concatenation of string)
       currentValue = currentValue + btn.innerText;
-      calScreen.innerText = currentValue;
+      if (currentOperation) {
+        calScreen.innerText =
+          storedValue + " " + currentOperation + " " + currentValue;
+      } else {
+        calScreen.innerText = currentValue;
+      }
     });
   }
 });
